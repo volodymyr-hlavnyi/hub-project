@@ -19,18 +19,26 @@
 # Попробуйте снова: 63
 # Поздравляю! Вы угадали число 63!
 
+import random
+
+
+def guess_number(user_number, number):
+    if user_number == number:
+        return f'Congratulation! You guessed the number {number}.'
+    elif user_number < number:
+        return 'The number is greater.'
+    else:
+        return 'The number is less.'
+
+
 def hw_61():
-    import random
     number = random.randint(1, 100)
     while True:
-        user_number = int(input('Угадайте число от 1 до 100: '))
-        if user_number == number:
-            print(f'Поздравляю! Вы угадали число {number}!')
+        user_number = int(input('Guess the number from 1 to 100:'))
+        result = guess_number(user_number, number)
+        print(result)
+        if result.startswith('Congratulation'):
             break
-        elif user_number < number:
-            print('Загаданное число больше.')
-        else:
-            print('Загаданное число меньше.')
 
 
 # 2. Напишите программу, которая запрашивает у пользователя число
@@ -48,14 +56,15 @@ def hw_61():
 #
 # Первые 7 чисел Фибоначчи: 0, 1, 1, 2, 3, 5, 8
 
-def hw_62():
-    n = int(input('Введите число N: '))
+def hw_62(num):
     a, b = 0, 1
     i = 0
-    while i < n:
-        print(a, end=', ')
+    numbers_in_line = ''
+    while i < num:
+        numbers_in_line += f'{a}{"" if i + 1 == num else ", "}'
         a, b = b, a + b
         i += 1
+    return (f'First {num} Fibonacci numbers: {numbers_in_line}')
 
 
 # 3. Напишите программу, которая запрашивает у пользователя целое
@@ -72,19 +81,29 @@ def hw_62():
 # Введите целое положительное число: 17
 # Число 17 является простым.
 
-def hw_63():
-    number = int(input('Введите целое положительное число: '))
+def hw_63(num):
     i = 2
-    while i < number:
-        if number % i == 0:
-            print(f'Число {number} не является простым.')
+    return_string = ''
+
+    while i < num:
+        if num % i == 0:
+            return_string = f'Number {num} is not prime.'
             break
         i += 1
     else:
-        print(f'Число {number} является простым.')
+        return_string = f'Number {num} is prime.'
+
+    return return_string
 
 
 if __name__ == '__main__':
+    print('6 1.')
     hw_61()
-    hw_62()
-    hw_63()
+
+    print('6 2.')
+    num = int(input('Enter a integer for N: '))
+    print(hw_62(num))
+
+    print('6 3.')
+    num = int(input('Enter a positive integer: '))
+    print(hw_63(num))

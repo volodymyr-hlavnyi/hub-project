@@ -50,7 +50,7 @@ def ls6_5():
 
 
 def ls6_6():
-    
+
     pass
 
 
