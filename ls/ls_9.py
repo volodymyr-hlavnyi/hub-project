@@ -28,13 +28,19 @@ def ls9_5(max_symbol: int = 55279):
     print('')
 
 
+def ls9_6(input_string: str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'):
+    for i in input_string:
+        print(f'{i} - {ord(i)}')
+
+
 if __name__ == '__main__':
     print(ls9_1())
-    ls9_2()
-    ls9_3()
-    print('Hello', 'word!')
-    print(len(ls9_4('Hello', 'word!')))
-    print(len(ls9_4('Hello', '')))
-    ls9_5()
+ls9_2()
+ls9_3()
+print('Hello', 'word!')
+print(len(ls9_4('Hello', 'word!')))
+print(len(ls9_4('Hello', '')))
+# ls9_5()
+ls9_6()
 
-    # print(ord('😀'))
+# print(ord('😀'))
