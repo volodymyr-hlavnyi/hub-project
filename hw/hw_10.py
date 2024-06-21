@@ -41,7 +41,7 @@ def hw10_1(input_string: str = 'Hello, world!'):
     # # Символы 'l' и 'o' повторяются.
 
 
-def hw10_2(input_string: str = 'Helloo'):
+def hw10_2(input_string: str = 'Hello'):
     str_what_repeated = ''
     for i in input_string:
         if input_string.count(i) > 1:
