@@ -15,6 +15,10 @@ class TestHomeworkFunctions(unittest.TestCase):
         expected_output = "Symbols 'l' repeat."
         self.assertEqual(output, expected_output)
 
+        output = hw10_2('Helloo')
+        expected_output = "Symbols 'l' repeat."
+        self.assertEqual(output, expected_output)
+
     def test_hw10_3(self):
         output = hw10_3('Python', 10)
         expected_output = '  Python  '
