@@ -12,11 +12,11 @@ class TestHomeworkFunctions(unittest.TestCase):
 
     def test_hw10_2(self):
         output = hw10_2('Hello')
-        expected_output = "Symbols 'l' repeat."
+        expected_output = "Symbols l repeat."
         self.assertEqual(output, expected_output)
 
         output = hw10_2('Helloo')
-        expected_output = "Symbols 'l' repeat."
+        expected_output = "Symbols l and o repeat."
         self.assertEqual(output, expected_output)
 
     def test_hw10_3(self):
