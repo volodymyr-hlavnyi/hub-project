@@ -18,33 +18,47 @@ def hw10_1(input_string: str = 'Hello, world!'):
         input_string = input_string.replace(i, '')
     return input_string
 
+    # 2. Напишите программу, которая запрашивает
+    # у пользователя строку и определяет, содержит
+    # ли она только уникальные символы.
+    # Если все символы в строке уникальны, выведите
+    # соответствующее сообщение на экран.
+    # В противном случае выведите сообщение о том,
+    # какие символы повторяются. Не используйте
+    # множества и подобные структуры данных,
+    # которые мы пока не изучали, для проверки
+    # уникальности символов.
+    #
+    #
+    # Пример вывода:
+    # #
+    # Введите строку: Python
+    # #
+    # Все символы в строке уникальны.
+    # #
+    # Введите строку: Hello
+    #
+    # # Символы 'l' и 'o' повторяются.
 
-# 2. Напишите программу, которая запрашивает
-# у пользователя строку и определяет, содержит
-# ли она только уникальные символы.
-# Если все символы в строке уникальны, выведите
-# соответствующее сообщение на экран.
-# В противном случае выведите сообщение о том,
-# какие символы повторяются. Не используйте
-# множества и подобные структуры данных,
-# которые мы пока не изучали, для проверки
-# уникальности символов.
-#
-#
-# Пример вывода:
-# #
-# Введите строку: Python
-# #
-# Все символы в строке уникальны.
-# #
-# Введите строку: Hello
-#
-# # Символы 'l' и 'o' повторяются.
-def hw10_2(input_string: str = 'Hello'):
+
+def remove_duplicates(input_string):
+    result = ""
+    for char in input_string:
+        if char not in result:
+            result += char
+    return result
+
+
+def hw10_2(input_string: str = 'Helloo'):
+    str_what_repeated = ''
     for i in input_string:
         if input_string.count(i) > 1:
-            return f"Symbols '{i}' repeat."
-    return "All symbols in the string are unique."
+            str_what_repeated += i
+    if str_what_repeated not in '':
+        str_4_print = f"{' and '.join(remove_duplicates(str_what_repeated))}"
+        return f"Symbols {str_4_print} repeat."
+    else:
+        return "All symbols in the string are unique."
 
 
 # 3. Напишите программу, которая запрашивает у
@@ -72,8 +86,14 @@ def hw10_3(input_string: str = 'Python', width: int = 10):
 
 if __name__ == '__main__':
     print(hw10_1())
-    inp_str = input('Enter a string (default Hello): ')
+    inp_str = input('Enter a string (default Helloo): ')
+    if inp_str == '':
+        inp_str = 'Helloo'
     print(hw10_2(inp_str))
-    inp_str = input('Enter a string: ')
-    inp_width = int(input('Enter a width: '))
+    inp_str = input('Enter a string (default Python): ')
+    inp_width = input('Enter a width (default 10): ')
+    if inp_str == '':
+        inp_str = 'Python'
+    if inp_width == '':
+        inp_width = 10
     print(hw10_3(inp_str, inp_width))
