@@ -66,10 +66,10 @@ if __name__ == '__main__':
     hw12_1(num, '<')
     # more beautiful
     # when align align
-
     print('*' * 50)
     print('When align right')
-    hw12_1(num)
+    hw12_1(num, '>')
     print('*' * 50)
+
     list1, list2 = hw12_2_input()
     print(hw12_2(list1, list2))
