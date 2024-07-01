@@ -9,6 +9,11 @@ class TestHomeworkFunction(unittest.TestCase):
         threshold = 90
         self.assertEqual(hw15_1(students, threshold), ['Charlie'])
 
+    def test_hw15_1_2(self):
+        students = [('Alice', 20, 90), ('Bob', 19, 80), ('Charlie', 21, 95), ('David', 18, 85)]
+        threshold = 85
+        self.assertEqual(hw15_1(students, threshold), ['Alice', 'Charlie'])
+
     def test_hw15_2_1(self):
         sentence = 'Программирование это интересно и полезно'
         self.assertEqual(hw15_2(sentence), (16, 3, 9, 1, 7))
