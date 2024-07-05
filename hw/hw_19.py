@@ -56,6 +56,22 @@ def is_subset(set1, set2):
     return flag_all_symbol_is_present
 
 
+a = ['cat', 'dog', 'tac', 'god', 'act', 'bober', 'top']
+
+
+# def return_anagram_dict(words: list[str]):
+#     anagram_dict = dict()
+#     words = [(word, ''.join(sorted(list(word)))) for word in words]
+#     for item in words:
+#         if item[1] not in anagram_dict:
+#             anagram_dict.update({item[1]: [item[0]]})
+#         else:
+#             anagram_dict[item[1]].append(item[0])
+#     return [value for value in anagram_dict.values() if len(value) > 1]
+#
+#     print(return_anagram_dict(a))
+
+
 if __name__ == '__main__':
     list_of_words = ['cat', 'dog', 'tac', 'god', 'act']
     print(f'Original list: {list_of_words}')
