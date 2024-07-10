@@ -13,12 +13,14 @@
 # 9
 # 16
 # 25
-def hw23_1(gen_number):
+def hw23_1(n):
     def generate_squares(n):
-        return (i ** 2 for i in range(1, n + 1))
+        for x in range(1, 1 + n):
+            yield x ** 2
 
-    for i in generate_squares(gen_number):
-        print(i)
+    gen = generate_squares(n)
+    for k in range(n):
+        print(next(gen))
 
 
 # 2. Напишите генератор, который будет генерировать бесконечную
@@ -46,7 +48,7 @@ def hw23_2(n):
         a, b = 0, 1
         while True:
             yield a
-            a, b = b, a + b
+            a, b = b, b + a
 
     fib_gen = fibonacci_generator()
     for i in range(n):
