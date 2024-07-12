@@ -28,7 +28,7 @@ def generate_pcs():
     return random.randint(1, 100)
 
 
-def calculate_total_price(data: list) -> int:
+def calculate_total_price(data: list(str)) -> int:
     sum_total = 0
     for line in data:
         key, cost, pcs = line.split(',')
