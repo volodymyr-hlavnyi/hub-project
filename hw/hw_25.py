@@ -28,14 +28,14 @@ def generate_pcs():
     return random.randint(1, 100)
 
 
-def calculate_total_price(data: list):
-    sum_cost = 0
-    sum_pcs = 0
+def calculate_total_price(data: list(str)) -> int:
+    sum_total = 0
     for line in data:
         key, cost, pcs = line.split(',')
-        sum_cost += float(cost)
-        sum_pcs += int(pcs)
-    return sum_cost, sum_pcs
+        s_cost = float(cost)
+        s_pcs = int(pcs)
+        sum_total += s_cost * s_pcs
+    return round(sum_total,2)
 
 
 if __name__ == '__main__':
@@ -55,5 +55,5 @@ if __name__ == '__main__':
     data = read_data()
     # for item in data:
     #     print(item)
-    cost, pcs = calculate_total_price(data)
-    print(f"Total cost: {cost}, pcs: {pcs}")
+    total_sum = calculate_total_price(data)
+    print(f"Total sum: {total_sum}")
