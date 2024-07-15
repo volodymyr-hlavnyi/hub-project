@@ -16,9 +16,10 @@ def search_dir_rec(start_dir: str, dir_list: list = []):
         if os.path.isdir(file_path):
             dir_list.append(file_path)
             search_dir_rec(file_path)
+
     return dir_list
 
 
 if __name__ == '__main__':
-    for dir in hw26_2_2():
-        print(dir)
+    for name_file in hw26_2_2():
+        print(name_file)

@@ -5,7 +5,6 @@ import subprocess
 
 def hw26_1():
     arg = sys.argv
-    result = ''
     if len(arg) < 2:
         return 'You should setup file name for running in cmd line'
     name_file_for_run = arg[1]

@@ -20,5 +20,5 @@ def hw26_2_1():
 
 
 if __name__ == '__main__':
-    for dir in hw26_2_1():
-        print(dir)
+    for name_file in hw26_2_1():
+        print(name_file)
