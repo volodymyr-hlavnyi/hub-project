@@ -27,11 +27,10 @@ def print_name(func):
     @wraps(func)
     def wrapper():
         print(f'{func.__name__}')
-
-    try:
-        func()
-    except TypeError as e:
-        print(e)
+        try:
+            func()
+        except TypeError as e:
+            print(e)
     return wrapper
 
 
@@ -79,6 +78,7 @@ def hw31_1():
 #
 # Убедитесь, что перед запуском кода у вас создан файл log.txt
 # в той же директории, где находится скрипт Python.
+@print_name
 def hw31_2():
     import logging
 
