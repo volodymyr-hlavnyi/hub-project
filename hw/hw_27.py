@@ -15,7 +15,6 @@ def hw27_1():
 
 def hw27_2():
     def compose_functions(functions: list, x: int):
-        result = 0
         x_list = [x]
         for funct in functions:
             result = list(map(funct, x_list))
