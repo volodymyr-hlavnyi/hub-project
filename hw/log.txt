@@ -1,0 +1,7 @@
+
+
+
+INFO:root:Args: (2, 3), Result: 5
+INFO:root:Args: (5, 7), Result: 12
+INFO:root:Args: (2, 3), Result: 5
+INFO:root:Args: (5, 7), Result: 12

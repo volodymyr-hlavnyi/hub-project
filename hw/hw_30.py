@@ -56,25 +56,32 @@ class Rectangle:
 
 class BankAccount:
 
-    def __init__(self, account_number: str = 'DE12345', balance: int = 0):
+    def __init__(self, account_number: str = 'DE12345', balance: int = 0, lasterror: str = ''):
         self.account_number = account_number
         self.balance = balance
+        self.lasterror = lasterror
 
     def __str__(self):
-        return f"Account number: {self.account_number}, balance: {self.balance}"
+        error_txt = f"Error: {self.lasterror}" if self.lasterror else ""
+        str_text = f"Account number: {self.account_number}, balance: {self.balance}"
+        if error_txt:
+            str_text = f"Account number: {self.account_number}, balance: {self.balance}, {error_txt}"
+        return str_text
 
     def __repr__(self):
-        return f"Account number: {self.account_number}!r, balance: {self.balance}!r"
+        return str(self)
 
     def deposit(self, sum):
-        self.balance = self.balance + sum
+        self.balance += sum
+        self.lasterror = ""
 
     def withdraw(self, sum):
         check = self.balance - sum
         if check < 0:
-            print("You don`t have enough money for this operation! Cancel operation...")
+            self.lasterror = f"You don`t have enough money ({check}) for this operation! Cancel operation..."
         else:
             self.balance = check
+            self.lasterror = ""
 
 
 if __name__ == '__main__':
@@ -94,4 +101,5 @@ if __name__ == '__main__':
     print(my_wallet)
     my_wallet.withdraw(2)
     print(my_wallet)
-
+    my_wallet.deposit(100)
+    print(my_wallet)
