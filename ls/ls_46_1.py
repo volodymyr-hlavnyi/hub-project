@@ -1,3 +1,5 @@
+import os
+import dotenv
 import requests
 import sys
 
@@ -38,7 +40,9 @@ def get_lat_lon(city_name):
 
 
 def get_weather_by_city(city_name):
-    url = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&appid=7d8f1bde7c2064a38bfc59c111647574&hourly=temperature_2m"
+    dotenv.load_dotenv()
+    api_key = os.getenv("WEATHER_API_KEY")
+    url = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&appid={api_key}&hourly=temperature_2m"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
