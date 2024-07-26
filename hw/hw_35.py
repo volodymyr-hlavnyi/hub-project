@@ -18,7 +18,7 @@ def hw36_1():
 
 @print_name
 def hw36_2():
-    def get_common_words(url_list):
+    async def get_common_words(url_list):
         all_words = []
         word_pattern = re.compile(r'\b\w+\b')
 
