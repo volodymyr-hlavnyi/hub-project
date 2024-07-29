@@ -57,7 +57,6 @@ def hw36_2(name_of_site, level):
 
 
 if __name__ == '__main__':
-
     print("hw36_1")
     name_of_site = hw36_1_input()
     hw36_1(name_of_site)
