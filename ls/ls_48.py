@@ -58,6 +58,7 @@ def ls48_3():
         href = i.attrs.get("href")
         print(href)
 
+
 # Написать программу, которая скачивает
 # страницу с сайта на выбор с
 # актуальным курсом валют,
@@ -73,8 +74,6 @@ def get_curse():
     for i in zip(name, title):
         cur = i.contents[0]
         print(i, cur)
-
-
 
 
 if __name__ == '__main__':

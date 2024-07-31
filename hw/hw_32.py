@@ -81,12 +81,13 @@ class Email:
         return self.date != other.date
 
     def __str__(self):
-        list_email = []
-        list_email.append(f'From: {self.from_email}')
-        list_email.append(f'To: {self.to_email}')
-        list_email.append(f'Subject: {self.subject}')
-        list_email.append(self.text)
-        return '\n'.join(list_email)
+        return ''.join(
+            f'From: {self.from_email} \n'
+            f'To: {self.to_email} \n'
+            f'Subject: {self.subject} {self.text}) \n'
+            f'\n'
+            f'{self.text} \n'
+        )
 
     def __len__(self):
         return len(self.text)
