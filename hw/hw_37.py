@@ -51,12 +51,26 @@ def get_user_id():
     return user_id
 
 
-def get_connect():
+class Connector:
+    def __init__(self, config):
+        print("Opening connection...")
+        self.connection = mysql.connector.connect(**config)
+        self.cursor = self.connection.cursor()
+        print("Connection established")
+
+    def __del__(self):
+        print("Closing connection...")
+        self.cursor.close()
+        self.connection.close()
+        print("Connection closed")
+
+
+def get_connect(database='ich_edit'):
     dbconfig = {
         'host': 'ich-db.ccegls0svc9m.eu-central-1.rds.amazonaws.com',
         'user': 'ich1',
         'password': 'password',
-        'database': 'ich_edit'
+        'database': database,
     }
 
     connection = mysql.connector.connect(**dbconfig)
