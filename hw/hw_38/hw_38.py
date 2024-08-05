@@ -42,7 +42,11 @@ def select_table():
 if __name__ == '__main__':
 
     db = Connector(dbconfig)
-    list_of_tables = ['Users', 'Sales', 'Products']
+    list_of_tables = {
+        'Users': ['id', 'name', 'age'],
+        'Sales': ['pid', 'prod', 'quantity'],
+        'Products': ['sid', 'pid', 'id']
+    }
     for num, tb in enumerate(list_of_tables):
         print(f" {num} - {tb}")
     num_table = int(input('Select table for view records: '))
