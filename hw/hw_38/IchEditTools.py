@@ -11,7 +11,7 @@ class Ich_Edit:
             """
             select 
                 *
-            from Users
+            from users
             ;
             """
         )
@@ -24,7 +24,7 @@ class Ich_Edit:
             """
             select 
                 *
-            from Sales
+            from sales
             ;
             """
         )
@@ -37,9 +37,29 @@ class Ich_Edit:
             """
             select 
                 *
-            from Products
+            from product
             ;
             """
         )
         result = cursor.fetchall()
         return [Product(data) for data in result]
+
+    @staticmethod
+    def get_columns(db, table_name):
+        db.cursor.execute(
+            """
+                SELECT COLUMN_NAME 
+                FROM INFORMATION_SCHEMA.COLUMNS 
+                WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s
+                ;
+            """, (db.connection.database, table_name))
+        result = db.cursor.fetchall()
+        return [row[0] for row in result]
+
+    @staticmethod
+    def search_all_fields(db, table_name, search_value):
+        columns = Ich_Edit.get_columns(db, table_name)
+        search_query = f"SELECT * FROM {table_name} WHERE " + " OR ".join([f"{col} LIKE %s" for col in columns])
+        search_values = tuple([f"%{search_value}%"] * len(columns))
+        db.cursor.execute(search_query, search_values)
+        return db.cursor.fetchall()

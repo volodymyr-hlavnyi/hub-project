@@ -42,22 +42,60 @@ def select_table():
 if __name__ == '__main__':
 
     db = Connector(dbconfig)
-    list_of_tables = {
-        'Users': ['id', 'name', 'age'],
-        'Sales': ['pid', 'prod', 'quantity'],
-        'Products': ['sid', 'pid', 'id']
+    dict_of_tables = {
+        'Exit': [],
+        'users': ['id', 'name', 'age'],
+        'sales': ['pid', 'prod', 'quantity'],
+        'products': ['sid', 'pid', 'id']
     }
-    for num, tb in enumerate(list_of_tables):
-        print(f" {num} - {tb}")
-    num_table = int(input('Select table for view records: '))
-    if num_table == 0:
-        for num, record in enumerate(Ich_Edit.get_users(db.cursor)):
-            print(f" {num} - {record}")
-    elif num_table == 1:
-        for num, record in enumerate(Ich_Edit.get_sales(db.cursor)):
-            print(f" {num} - {record}")
-    elif num_table == 2:
-        for num, record in enumerate(Ich_Edit.get_products(db.cursor)):
-            print(f" {num} - {record}")
+    list_kind_view = [
+        'Exit',
+        'View Records of table',
+        'View list of Column of table',
+        'Search value'
+
+    ]
+    while True:
+
+        # 1
+        for num, tb in enumerate(list_kind_view):
+            print(f" {num} - {tb}")
+        num_kind_view = int(input('Select type of view (0 - exit)): '))
+
+        # 2
+        for num, tb in enumerate(dict_of_tables):
+            print(f" {num} - {tb}")
+        num_table = int(input('Select table (0 - exit): '))
+
+        # 3
+        search_value = input("Enter string for searching: ")
+
+        if num_table == 0:
+            break
+        elif num_table == 1:
+            print(list(dict_of_tables.keys())[num_table])
+            if num_kind_view == 1:
+                for num, record in enumerate(Ich_Edit.get_users(db.cursor)):
+                    print(f" {num} - {record}")
+        elif num_table == 2:
+            print(list(dict_of_tables.keys())[num_table])
+            for num, record in enumerate(Ich_Edit.get_sales(db.cursor)):
+                print(f" {num} - {record}")
+        elif num_table == 3:
+            print(list(dict_of_tables.keys())[num_table])
+            for num, record in enumerate(Ich_Edit.get_products(db.cursor)):
+                print(f" {num} - {record}")
+        print('==' * 15)
+
+        if num_kind_view == 2:
+            table_name = list(dict_of_tables.keys())[num_table]
+            for column in Ich_Edit.get_columns(db, table_name):
+                print(f" {column}")
+
+        if num_kind_view == 3:
+            table_name = list(dict_of_tables.keys())[num_table]
+            result = Ich_Edit.search_all_fields(db, table_name, search_value)
+            for value in result:
+                print(value)
 
     db.close()
