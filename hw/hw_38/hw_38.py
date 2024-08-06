@@ -12,41 +12,21 @@
 # 2. Выбрать одно поле из выбранной таблицы и искомое значение этого поля. Вывести все
 # подходящие строки
 
-import dotenv
-import os
-from Connector import Connector
+
 from IchEditTools import Ich_Edit
+from Connector import Connector
+from get_db_config import get_db_config
 
-dotenv.load_dotenv()
-ICH_HOST = os.getenv("ICH_HOST")
-ICH_PASSWORD = os.getenv("ICH_PASSWORD")
-ICH_USER = os.getenv("ICH_USER")
-ICH_DATABASE = os.getenv("ICH_DATABASE")
-
-dbconfig = {
-    'host': f"{ICH_HOST}",
-    'user': f"{ICH_USER}",
-    'password': f"{ICH_PASSWORD}",
-    'database': f"{ICH_DATABASE}",
-}
-
-
-def get_list_from_table():
-    pass
-
-
-def select_table():
-    pass
 
 
 if __name__ == '__main__':
 
-    db = Connector(dbconfig)
+    db = Connector(get_db_config())
     dict_of_tables = {
         'Exit': [],
         'users': ['id', 'name', 'age'],
         'sales': ['pid', 'prod', 'quantity'],
-        'products': ['sid', 'pid', 'id']
+        'product': ['sid', 'pid', 'id']
     }
     list_kind_view = [
         'Exit',
@@ -68,7 +48,8 @@ if __name__ == '__main__':
         num_table = int(input('Select table (0 - exit): '))
 
         # 3
-        search_value = input("Enter string for searching: ")
+        if num_kind_view == 3:
+            search_value = input("Enter string for searching: ")
 
         if num_table == 0:
             break
@@ -79,18 +60,22 @@ if __name__ == '__main__':
                     print(f" {num} - {record}")
         elif num_table == 2:
             print(list(dict_of_tables.keys())[num_table])
-            for num, record in enumerate(Ich_Edit.get_sales(db.cursor)):
-                print(f" {num} - {record}")
+            if num_kind_view == 1:
+                for num, record in enumerate(Ich_Edit.get_sales(db.cursor)):
+                    print(f" {num} - {record}")
         elif num_table == 3:
             print(list(dict_of_tables.keys())[num_table])
-            for num, record in enumerate(Ich_Edit.get_products(db.cursor)):
-                print(f" {num} - {record}")
+            if num_kind_view == 1:
+                for num, record in enumerate(Ich_Edit.get_products(db.cursor)):
+                    print(f" {num} - {record}")
         print('==' * 15)
 
         if num_kind_view == 2:
             table_name = list(dict_of_tables.keys())[num_table]
-            for column in Ich_Edit.get_columns(db, table_name):
-                print(f" {column}")
+            columns_string = ' | '.join([column for column in Ich_Edit.get_columns(db, table_name)])
+            print('-' * len(columns_string))
+            print(columns_string)
+            print('-' * len(columns_string))
 
         if num_kind_view == 3:
             table_name = list(dict_of_tables.keys())[num_table]
