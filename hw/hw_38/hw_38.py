@@ -41,7 +41,12 @@ def get_menu_list():
 def print_input_menu(menu, _add):
     for number, line in enumerate(menu):
         print(f" {number} - {line}")
-    return int(input(f'Select {_add} (0 - exit)): '))
+    try:
+        result = int(input(f'Select {_add} (0 - exit)): '))
+    except ValueError as e:
+        print(f"Error {e}, please try again...")
+        result = print_input_menu(menu, _add)
+    return result
 
 
 def print_content_table(menu, num_table):
@@ -81,19 +86,26 @@ def print_search_result_with_sign(menu, num_table, search_value):
 if __name__ == '__main__':
 
     db = Connector(get_db_config())
-    menu_1, menu_2 = get_menu_list()
 
     while True:
 
+        menu_1, menu_2 = get_menu_list()
+        print('==' * 15)
         # 1
-        num_kind_view = print_input_menu(menu_1, 'table')
+        num_kind_view = print_input_menu(menu_1, 'type of view')
         if num_kind_view == 0:
             break
+        if not num_kind_view in [x for x in range(1, len(menu_1))]:
+            print(f"Uncorrected choice, please select from {[x for x in range(0, len(menu_1))]}")
+            continue
 
         # 2
-        num_table = print_input_menu(menu_2, 'type of view')
+        num_table = print_input_menu(menu_2, 'table')
         if num_table == 0:
             break
+        if not num_table in [x for x in range(1, len(menu_2))]:
+            print(f"Uncorrected choice, please select from {[x for x in range(0, len(menu_2))]}")
+            continue
 
         # 3
         if num_kind_view == 3:
@@ -101,11 +113,11 @@ if __name__ == '__main__':
 
         # 4
         if num_kind_view == 4:
+            table_name = list(menu_2.keys())[num_table]
+            columns_list = [column for column in Ich_Edit.get_columns(db, table_name)]
             while True:
-                search_value_raw = input("Enter column and < > = <= >= and value (age > 20) : ")
-                table_name = list(menu_2.keys())[num_table]
-                columns_list = [column for column in Ich_Edit.get_columns(db, table_name)]
                 print(columns_list)
+                search_value_raw = input("Enter column and < > = <= >= and value (age > 20) : ")
                 if search_value_raw.split()[0] in columns_list:
                     break
                 else:
@@ -113,8 +125,6 @@ if __name__ == '__main__':
 
         if num_table in [1, 2, 3] and num_kind_view == 1:
             print_content_table(menu=menu_2, num_table=num_table)
-
-        print('==' * 15)
 
         if num_kind_view == 2:
             print_table_header(menu=menu_2, num_table=num_table)

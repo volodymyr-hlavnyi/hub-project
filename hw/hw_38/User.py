@@ -5,4 +5,4 @@ class User:
         self.age = data[2]
 
     def __str__(self):
-        return f"Name: {self.name} age: {self.age}"
+        return f"id: {self.id} | name: {self.name} | age: {self.age}"

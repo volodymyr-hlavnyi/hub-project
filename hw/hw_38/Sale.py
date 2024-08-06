@@ -6,4 +6,4 @@ class Sale:
         self.pid = data[2]
 
     def __str__(self):
-        return f"sid: {self.sid} id: {self.id} pid: {self.pid}"
+        return f"sid: {self.sid} | id: {self.id} | pid: {self.pid}"

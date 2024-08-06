@@ -6,4 +6,5 @@ class Product:
         self.quantity = data[2]
 
     def __str__(self):
-        return f"pid: {self.prod} prod: {self.prod} quantity: {self.quantity}"
+        return f"pid: {self.prod} | prod: {self.prod} | quantity: {self.quantity}"
+
