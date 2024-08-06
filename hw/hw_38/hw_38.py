@@ -16,6 +16,7 @@
 from IchEditTools import Ich_Edit
 from Connector import Connector
 from get_db_config import get_db_config
+import re
 
 
 def get_menu_list():
@@ -63,9 +64,16 @@ def print_table_header(menu, num_table):
     print('-' * len(columns_string))
 
 
-def print_search_result(menu, num_table):
+def print_search_result(menu, num_table, search_value):
     table_name = list(menu.keys())[num_table]
     result = Ich_Edit.search_all_fields(db, table_name, search_value)
+    for value in result:
+        print(value)
+
+
+def print_search_result_with_sign(menu, num_table, search_value):
+    table_name = list(menu.keys())[num_table]
+    result = Ich_Edit.search_all_fields_with_eq_sign(db, table_name, search_value_raw)
     for value in result:
         print(value)
 
@@ -91,6 +99,18 @@ if __name__ == '__main__':
         if num_kind_view == 3:
             search_value = input("Enter string for searching: ")
 
+        # 4
+        if num_kind_view == 4:
+            while True:
+                search_value_raw = input("Enter column and < > = <= >= and value (age > 20) : ")
+                table_name = list(menu_2.keys())[num_table]
+                columns_list = [column for column in Ich_Edit.get_columns(db, table_name)]
+                print(columns_list)
+                if search_value_raw.split()[0] in columns_list:
+                    break
+                else:
+                    print(f"First word must be name of column of table, try agan...")
+
         if num_table in [1, 2, 3] and num_kind_view == 1:
             print_content_table(menu=menu_2, num_table=num_table)
 
@@ -100,7 +120,10 @@ if __name__ == '__main__':
             print_table_header(menu=menu_2, num_table=num_table)
 
         if num_kind_view == 3:
-            print_search_result(menu=menu_2, num_table=num_table)
+            print_search_result(menu=menu_2, num_table=num_table, search_value=search_value)
+
+        if num_kind_view == 4:
+            print_search_result_with_sign(menu=menu_2, num_table=num_table, search_value=search_value_raw)
 
     print("See you soon!")
     db.close()

@@ -63,3 +63,10 @@ class Ich_Edit:
         search_values = tuple([f"%{search_value}%"] * len(columns))
         db.cursor.execute(search_query, search_values)
         return db.cursor.fetchall()
+
+    @staticmethod
+    def search_all_fields_with_eq_sign(db, table_name, search_value_raw):
+        columns = Ich_Edit.get_columns(db, table_name)
+        search_query = f"SELECT * FROM {table_name} WHERE {str(search_value_raw)};"
+        db.cursor.execute(search_query)
+        return db.cursor.fetchall()
