@@ -38,14 +38,14 @@ def get_menu_list():
     return menu_1, menu_2
 
 
-def print_input_menu(menu, _add):
+def print_input_menu(menu, add):
     for number, line in enumerate(menu):
         print(f" {number} - {line}")
     try:
-        result = int(input(f'Select {_add} (0 - exit)): '))
+        result = int(input(f'Select {add} (0 - exit)): '))
     except ValueError as e:
         print(f"Error {e}, please try again...")
-        result = print_input_menu(menu, _add)
+        result = print_input_menu(menu, add)
     return result
 
 
