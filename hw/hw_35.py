@@ -4,8 +4,8 @@ import re
 from collections import Counter
 
 
-@print_name
-def hw36_1():
+#@print_name
+def hw35_1():
     def get_response(url: str):
         return requests.get(f"{url}")
 
@@ -16,9 +16,9 @@ def hw36_1():
     print("Response Headers:", response.headers)
 
 
-@print_name
-def hw36_2():
-    async def get_common_words(url_list):
+#@print_name
+def hw35_2():
+    def get_common_words(url_list):
         all_words = []
         word_pattern = re.compile(r'\b\w+\b')
 
@@ -49,5 +49,5 @@ def hw36_2():
 
 
 if __name__ == '__main__':
-    hw36_1()
-    hw36_2()
+    hw35_1()
+    hw35_2()
