@@ -1,10 +1,8 @@
-from tools.service import print_name
 import requests
 import re
 from collections import Counter
 
 
-#@print_name
 def hw35_1():
     def get_response(url: str):
         return requests.get(f"{url}")
@@ -16,7 +14,6 @@ def hw35_1():
     print("Response Headers:", response.headers)
 
 
-#@print_name
 def hw35_2():
     def get_common_words(url_list):
         all_words = []
