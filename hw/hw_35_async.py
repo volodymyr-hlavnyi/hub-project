@@ -5,7 +5,7 @@ import asyncio
 import aiohttp
 
 
-async def hw36_1():
+async def hw35_1():
     async def get_response(url: str, session: aiohttp.ClientSession):
         try:
             async with session.get(url) as response:
@@ -29,7 +29,7 @@ async def hw36_1():
         print("Response Headers:", status)
 
 
-async def hw36_2():
+async def hw35_2():
     async def fetch(url, session):
         try:
             async with session.get(url) as response:
@@ -68,5 +68,5 @@ async def hw36_2():
 
 
 if __name__ == '__main__':
-    asyncio.run(hw36_1())
-    asyncio.run(hw36_2())
+    asyncio.run(hw35_1())
+    asyncio.run(hw35_2())
